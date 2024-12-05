@@ -17,7 +17,7 @@ const Navbar = () => {
                 <Link to={"/"}>Kamal</Link>
             </li>
             <li>
-                <Link to={"/cart"}></Link>
+                <Link to={"/cart"}>Cart(0)</Link>
             </li>
         </ul>
     )
@@ -25,7 +25,7 @@ const Navbar = () => {
     <nav className="bg-pink-600 sticky top-0">
         <div className="lg:flex lg:justify-between items-center py-3 lg:px-3 ">
             <div className="left py-3 lg:py-0">
-                <Link>
+                <Link to={"/"}>
                     <h2 className=" font-bold text-white text-2xl text-center">E-Bharat</h2>
                 </Link>
             </div>
