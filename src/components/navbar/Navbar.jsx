@@ -1,7 +1,17 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import SearchBar from "../searchBar/SearchBar"
 
 const Navbar = () => {
+
+    const user = JSON.parse(localStorage.getItem("users"));
+    
+    const navigate = useNavigate();
+
+    const logout = () => {
+        localStorage.clear("users");
+        navigate("/login");
+    }
+
     const navList = (
         <ul className="flex space-x-3 text-white font-medium text-md px-5 ">
             <li>
@@ -10,12 +20,34 @@ const Navbar = () => {
             <li>
                 <Link to={"/allproduct"}>All Product</Link>
             </li>
+            {!user ? 
             <li>
                 <Link to={"/signup"}>Sign Up</Link>
             </li>
+            : ""
+            }
+            {!user ? 
             <li>
-                <Link to={"/"}>Kamal</Link>
+                <Link to={"/login"}>Login</Link>
             </li>
+            : ""
+            }
+            {user?.role === "user" &&
+            <li>
+                <Link to={"/user-dashboard"}>{user?.name}</Link>
+            </li>
+            }
+            {user?.role === "admin" &&
+            <li>
+                <Link to={"/admin-dashboard"}>Admin</Link>
+            </li>
+            }
+            {user &&
+            <li className=" cursor-pointer" onClick={logout}>
+                Logout
+            </li>
+            }
+
             <li>
                 <Link to={"/cart"}>Cart(0)</Link>
             </li>
